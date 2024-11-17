@@ -1,15 +1,16 @@
 const quizContent = [
     {
         question: 'What is your favorite color',
-        a: 'Red',
-        b: 'Green',
-        c: 'Yellow',
-        d: 'Black',
+        a: 'A. Red',
+        b: 'B. Green',
+        c: 'C. Yellow',
+        d: 'D. Black',
         correctAnswer: 'B'
     }
 ]
 
 const quizContainter = document.getElementById('quizContainer')
+const startBtn = document.getElementById('startBtn')
 
 //Grab a question
 const question = quizContent[0/*Math.floor(Math.random() * 10)*/]
@@ -23,6 +24,7 @@ console.log(question)
 //Button to restart the quiz
 //Function that creates the quiz when a button is pressed and starts it
 function startQuiz(quizArr) {
+    quizContainter.innerHTML = ''
     createQuiz(quizArr, 0)
 }
 
@@ -44,7 +46,7 @@ function createQuiz(quizArr, questionIndex) {
     //append all buttons to the answer section of the box
     answerBox.append(answerA, answerB, answerC, answerD)
     quizContainter.appendChild(answerBox)
-
+    //add quiz controls
 }
 
 function createAnswerButtons(quizArr, quizKey) {
@@ -62,4 +64,6 @@ function checkAnswer() {
     
 }
 
-startQuiz(quizContent)
+startBtn.addEventListener('click', (e) => {
+    startQuiz(quizContent)
+})
