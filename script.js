@@ -5,7 +5,7 @@ const quizContent = [
         b: 'B. Green',
         c: 'C. Yellow',
         d: 'D. Black',
-        correctAnswer: 'B'
+        correctAnswer: 'B. Green'
     }
 ]
 
@@ -40,6 +40,12 @@ function createQuiz(quizArr, questionIndex) {
     const answerB = createAnswerButtons(quizContent[questionIndex], 'b')
     const answerC = createAnswerButtons(quizContent[questionIndex], 'c')
     const answerD = createAnswerButtons(quizContent[questionIndex], 'd')
+
+    //add check to see if button is the right answer
+    answerA.setAttribute('onclick', 'checkAnswer(this)')
+    answerB.setAttribute('onclick', 'checkAnswer(this)')
+    answerC.setAttribute('onclick', 'checkAnswer(this)')
+    answerD.setAttribute('onclick', 'checkAnswer(this)')
     //append all to the appropriate boxes
     questionBox.textContent = question
     quizContainter.appendChild(questionBox)
@@ -47,6 +53,7 @@ function createQuiz(quizArr, questionIndex) {
     answerBox.append(answerA, answerB, answerC, answerD)
     quizContainter.appendChild(answerBox)
     //add quiz controls
+    
 }
 
 function createAnswerButtons(quizArr, quizKey) {
@@ -60,8 +67,9 @@ function restartQuiz() {
 
 }
 
-function checkAnswer() {
-    
+function checkAnswer(element) {
+    //check if the button clicked is equal to the correct answer
+    element.textContent === question.correctAnswer ? console.log('that is right') : console.log('try again')
 }
 
 startBtn.addEventListener('click', (e) => {
