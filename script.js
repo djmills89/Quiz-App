@@ -1,3 +1,11 @@
+//User should be notified to guess again if they get the wrong answer
+//Notified if they get the correct answer
+//Button to go to the next question if answer is correct
+//Lets user know when quiz is over
+//Button to restart the quiz
+//Function that creates the quiz when a button is pressed and starts it
+
+
 const quizContent = [
     {
         question: 'What metal, when burned by an allomancer, enhances their senses?',
@@ -76,79 +84,17 @@ const quizContent = [
     }
 ]
 
+//Grab DOM Elements
 const quizContainter = document.getElementById('quizContainer')
 const startBtn = document.getElementById('startBtn')
 
-//Grab a question
-const question = quizContent[0/*Math.floor(Math.random() * 10)*/]
-function shuffleQuiz(array) {
-    for(let i = array.length - 1; i >= 0; i--) {
-        let j = Math.floor(Math.random() * i + 1)
-        let temp = array[i]
-        array[i] = array[j]
-        array[j] = temp
-    }
-    return array
-}
+//Store the shuffled quiz
 const quizShuffled = shuffleQuiz(quizContent)
 console.log(quizShuffled)
-//Each Question should have a group of answers
-//Each Question Should have a correct answer
-//User should be notified to guess again if they get the wrong answer
-//Notified if they get the correct answer
-//Button to go to the next question if answer is correct
-//Lets user know when quiz is over
-//Button to restart the quiz
-//Function that creates the quiz when a button is pressed and starts it
-function startQuiz(quizArr) {
-    quizContainter.innerHTML = ''
-    createQuiz(quizArr, 0)
-}
 
-function createQuiz(quizArr, questionIndex) {
-    //create the question box
-    const questionBox = document.createElement('p')
-    //create the answer box
-    const answerBox = document.createElement('div')
-    //get the question
-    const question = quizArr[questionIndex].question
-    //create the answer buttons
-    const answerA = createAnswerButtons(quizContent[questionIndex], 'a')
-    const answerB = createAnswerButtons(quizContent[questionIndex], 'b')
-    const answerC = createAnswerButtons(quizContent[questionIndex], 'c')
-    const answerD = createAnswerButtons(quizContent[questionIndex], 'd')
 
-    //add check to see if button is the right answer
-    answerA.setAttribute('onclick', 'checkAnswer(this)')
-    answerB.setAttribute('onclick', 'checkAnswer(this)')
-    answerC.setAttribute('onclick', 'checkAnswer(this)')
-    answerD.setAttribute('onclick', 'checkAnswer(this)')
-    //append all to the appropriate boxes
-    questionBox.textContent = question
-    quizContainter.appendChild(questionBox)
-    //append all buttons to the answer section of the box
-    answerBox.append(answerA, answerB, answerC, answerD)
-    quizContainter.appendChild(answerBox)
-    //add quiz controls
-    
-}
 
-function createAnswerButtons(quizArr, quizKey) {
-    //grab the quiz array with the quiz key value pair and create a button for it
-    const answerButton = document.createElement('button')
-    answerButton.textContent = quizArr[quizKey]
-    return answerButton
-}
-
-function restartQuiz() {
-
-}
-
-function checkAnswer(element) {
-    //check if the button clicked is equal to the correct answer
-    element.textContent === question.correctAnswer ? console.log('that is right') : console.log('try again')
-}
-
+//Starts quiz when button is clicked
 startBtn.addEventListener('click', (e) => {
-    startQuiz(quizContent)
+    startQuiz(quizShuffled)
 })
