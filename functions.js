@@ -32,10 +32,10 @@ function createQuiz(quizArr, questionIndex) {
     const answerD = createAnswerButtons(quizContent[questionIndex], 'd')
 
     //add check to see if button is the right answer
-    answerA.setAttribute('onclick', `checkAnswer(this), ${quizArr[questionIndex].correctAnswer}`)
-    answerB.setAttribute('onclick', `checkAnswer(this), ${quizArr[questionIndex].correctAnswer}`)
-    answerC.setAttribute('onclick', `checkAnswer(this), ${quizArr[questionIndex].correctAnswer}`)
-    answerD.setAttribute('onclick', `checkAnswer(this), ${quizArr[questionIndex].correctAnswer}`)
+    answerA.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
+    answerB.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
+    answerC.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
+    answerD.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
     //append all to the appropriate boxes
     questionBox.textContent = question
     quizContainter.appendChild(questionBox)
@@ -43,7 +43,7 @@ function createQuiz(quizArr, questionIndex) {
     answerBox.append(answerA, answerB, answerC, answerD)
     quizContainter.appendChild(answerBox)
     //add quiz controls
-    
+    console.log(quizArr[questionIndex].correctAnswer)
 }
 
 
