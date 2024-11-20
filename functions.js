@@ -44,6 +44,18 @@ function createQuiz(quizArr, questionIndex) {
     quizContainter.appendChild(answerBox)
     //add quiz controls
     console.log(quizArr[questionIndex].correctAnswer)
+    const nextBtn = document.createElement('button')
+    nextBtn.textContent = 'Next'
+
+    const restartBtn = document.createElement('button')
+    restartBtn.textContent = 'Restart Quiz'
+    restartBtn.onclick = function() {restartQuiz(quizShuffled)}
+
+    const submitBtn = document.createElement('button')
+    submitBtn.textContent = 'Submit'
+    submitBtn.disabled = true
+
+    quizContainter.append(nextBtn, restartBtn, submitBtn)
 }
 
 
@@ -64,6 +76,7 @@ function checkAnswer(element, correctAnswer) {
 
 
 //Will restart quiz, when i get around to it
-function restartQuiz() {
-
+function restartQuiz(quizArr) {
+    shuffleQuiz(quizArr)
+    startQuiz(quizArr)
 }
