@@ -32,7 +32,12 @@ function createQuiz(quizArr, questionIndex) {
     const answerD = createAnswerButtons(quizContent[questionIndex], 'd')
 
     //add check to see if button is the right answer
-    answerA.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
+    answerA.onclick = function () {
+        checkAnswer(this, quizArr[questionIndex].correctAnswer)
+        trackResponses(responseTracker, quizArr[questionIndex].id, quizArr[questionIndex].correctAnswer, this)
+        console.log(responseTracker)
+    }
+    
     answerB.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
     answerC.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
     answerD.onclick = function () {checkAnswer(this, quizArr[questionIndex].correctAnswer)}
@@ -79,4 +84,9 @@ function checkAnswer(element, correctAnswer) {
 function restartQuiz(quizArr) {
     shuffleQuiz(quizArr)
     startQuiz(quizArr)
+}
+
+function trackResponses(arrToUpdate, id, correctAnswer, element) {
+    //update the responses array with the question, the questions correct answer, and the users choice
+    arrToUpdate = [...arrToUpdate, {questionID: id, questionAnswer: correctAnswer, userAnswer: element.textContent}]
 }
