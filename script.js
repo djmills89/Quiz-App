@@ -101,8 +101,6 @@ const startBtn = document.getElementById('startBtn')
 const quizShuffled = shuffleQuiz(quizContent)
 console.log(quizShuffled)
 
-const responseTracker = []
-
 //Starts quiz when button is clicked
 startBtn.addEventListener('click', (e) => {
     startQuiz(quizShuffled)
